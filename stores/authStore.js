@@ -4,7 +4,7 @@ import { AsyncStorage } from "react-native";
 import jwt_decode from "jwt-decode";
 
 const instance = axios.create({
-  baseURL: "http://127.0.0.1:8000/"
+  baseURL: "http://192.168.8.132:80/api/"
 });
 
 class AuthStore {
@@ -25,18 +25,29 @@ class AuthStore {
     }
   };
 
-  login = async userData => {
+  signup = async (userData, navigation) => {
     try {
-      const res = await instance.post("/api/login/", userData);
+      await instance.post("register/", userData);
+      this.login(userData, navigation);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  login = async (userData, navigation) => {
+    try {
+      const res = await instance.post("login/", userData);
       const user = res.data;
-      this.setUser(user.access);
+      await this.setUser(user.access);
+      navigation.replace("BeanList");
     } catch (err) {
       console.log("something went wrong logging in");
     }
   };
 
-  logout = () => {
+  logout = navigation => {
     this.setUser();
+    navigation.replace("Login");
   };
 
   checkForToken = async () => {
@@ -46,13 +57,14 @@ class AuthStore {
       const currentTime = Date.now() / 1000;
       // Decode token and get user info
       const user = jwt_decode(token);
-
+      console.log("USER", user.exp);
       // Check token expiration
       if (user.exp >= currentTime) {
         // Set auth token header
         this.setUser(token);
       } else {
-        this.logout();
+        console.log("I AM EXPIRED");
+        this.setUser();
       }
     }
   };

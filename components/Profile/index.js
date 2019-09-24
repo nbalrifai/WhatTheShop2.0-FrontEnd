@@ -2,8 +2,10 @@ import React from "react";
 
 // NativeBase Components
 import { Card, CardItem, Text, Button } from "native-base";
+import authStore from "../../stores/authStore";
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
+  if (!authStore.user) navigation.replace("Login");
   return (
     <Card>
       <CardItem>
