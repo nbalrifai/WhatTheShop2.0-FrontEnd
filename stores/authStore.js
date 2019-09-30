@@ -2,8 +2,9 @@ import { decorate, observable } from "mobx";
 import axios from "axios";
 import { AsyncStorage } from "react-native";
 import jwt_decode from "jwt-decode";
+import { withNavigation } from "react-navigation";
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: "http://192.168.8.132:80/api/"
 });
 
@@ -15,13 +16,15 @@ class AuthStore {
       // Save token to localStorage
       await AsyncStorage.setItem("myToken", token);
       // Set token to Auth header
-      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+      instance.defaults.headers.common.Authorization = `Bearer ${token}`;
       // Set current user
+      console.log("this is the token " + token);
       this.user = jwt_decode(token);
     } else {
       await AsyncStorage.removeItem("myToken");
-      delete axios.defaults.headers.common.Authorization;
+      delete instance.defaults.headers.common.Authorization;
       this.user = null;
+      console.log("IM LOGGED OUT");
     }
   };
 
@@ -39,18 +42,18 @@ class AuthStore {
       const res = await instance.post("login/", userData);
       const user = res.data;
       await this.setUser(user.access);
-      navigation.replace("BeanList");
+      navigation.replace("Profile");
     } catch (err) {
       console.log("something went wrong logging in");
     }
   };
 
-  logout = navigation => {
-    this.setUser();
+  logout = async navigation => {
+    await this.setUser();
     navigation.replace("Login");
   };
 
-  checkForToken = async () => {
+  checkForToken = async navigation => {
     const token = await AsyncStorage.getItem("myToken");
 
     if (token) {
@@ -61,10 +64,11 @@ class AuthStore {
       // Check token expiration
       if (user.exp >= currentTime) {
         // Set auth token header
-        this.setUser(token);
+        await this.setUser(token);
       } else {
-        console.log("I AM EXPIRED");
-        this.setUser();
+        console.log("Please Login");
+        await this.setUser();
+        navigation.replace("Login");
       }
     }
   };
@@ -75,5 +79,5 @@ decorate(AuthStore, {
 });
 
 const authStore = new AuthStore();
-authStore.checkForToken();
+// authStore.checkForToken();
 export default authStore;

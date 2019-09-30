@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
+import authStore from "../../stores/authStore";
 
 // NativeBase Components
 import { List, Content, Spinner } from "native-base";
@@ -9,7 +10,7 @@ import coffeeBeanStore from "../../stores/coffeeBeanStore";
 
 // Component
 import CoffeeBeanItem from "./CoffeeBeanItem";
-// import CartButton from "../Buttons/CartButton";
+import CartButton from "../Buttons/CartButton";
 // import LogoutButton from "../Buttons/LogoutButton";
 
 const CoffeeBeanList = () => {
@@ -27,10 +28,10 @@ const CoffeeBeanList = () => {
   );
 };
 
-// CoffeeBeanList.navigationOptions = {
-//   title: "Coffee List",
-//   headerRight: <CartButton />,
-//   headerLeft: <LogoutButton />
-// };
+CoffeeBeanList.navigationOptions = {
+  title: "Coffee Bean List",
+  headerRight: <CartButton />
+  // headerLeft: <LogoutButton />
+};
 
 export default observer(CoffeeBeanList);

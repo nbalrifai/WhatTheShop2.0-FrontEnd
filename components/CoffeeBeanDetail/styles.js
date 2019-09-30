@@ -9,6 +9,41 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+
+  textName: {
+    color: "brown",
+    fontSize: 17,
+    marginLeft: 16,
+    fontWeight: "bold",
+    fontStyle: "italic",
+
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  textDescription: {
+    color: "brown",
+    fontSize: 13,
+    marginLeft: 16,
+    fontWeight: "bold",
+    fontStyle: "italic",
+
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  textQuant: {
+    color: "blue",
+    fontSize: 13,
+    marginLeft: 16,
+    fontWeight: "bold",
+    fontStyle: "italic",
+
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: 28
+  },
+
   divider: {
     borderBottomColor: "black",
     borderBottomWidth: 1
@@ -19,6 +54,13 @@ const styles = StyleSheet.create({
   },
   middleText: {
     color: "white",
+    fontWeight: "bold",
+    fontSize: 17,
+    alignSelf: "center"
+  },
+
+  FineAssemblyText: {
+    color: "#8b0000",
     fontWeight: "bold",
     fontSize: 17,
     alignSelf: "center"

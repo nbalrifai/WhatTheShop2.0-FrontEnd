@@ -35,7 +35,7 @@ const BottomTab = createBottomTabNavigator(
       activeTintColor: "#6200EE",
       inactiveTintColor: "#858585",
       style: {
-        backgroundColor: "white"
+        backgroundColor: "#deb887"
       },
       labelStyle: {
         fontSize: 12

@@ -1,16 +1,18 @@
 import React from "react";
 import { observer } from "mobx-react";
-
+import checkForToken from "../../stores/authStore";
+import { withNavigation } from "react-navigation";
 // NativeBase Components
 import { Text, ListItem, Body, List, Button } from "native-base";
 
 // Component
 import CartItem from "./CartItem";
+import CartButton from "../Buttons/CartButton";
 
 //Store
 import cartStore from "../../stores/cartStore";
 
-const CoffeeCart = () => {
+const CoffeeCart = navigation => {
   const { items } = cartStore;
   let cartItems;
   if (items) {
@@ -22,15 +24,21 @@ const CoffeeCart = () => {
       {cartItems}
       <ListItem>
         <Body>
-          <Text style={{ color: "white" }}>{cartStore.totalPrice}</Text>
+          <Text style={{ color: "blue" }}>{cartStore.totalPrice}</Text>
         </Body>
       </ListItem>
 
-      <Button full danger onPress={cartStore.checkoutCart}>
+      <Button full danger onPress={() => cartStore.checkoutCart(navigation)}>
         <Text>Checkout</Text>
       </Button>
     </List>
   );
 };
 
-export default observer(CoffeeCart);
+cartStore.navigationOptions = {
+  title: "Coffee Bean Cart",
+  headerRight: <CartButton />
+  // headerLeft: <LogoutButton />
+};
+
+export default withNavigation(observer(CoffeeCart));

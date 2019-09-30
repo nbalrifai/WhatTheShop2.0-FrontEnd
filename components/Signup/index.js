@@ -27,14 +27,14 @@ class Signup extends Component {
     if (authStore.user) navigation.replace("BeanList");
 
     return (
-      <Content>
+      <Content style={{ backgroundColor: "#f5f5dc" }}>
         <Header transparent />
         <List>
-          <ListItem style={{ borderBottomWidth: 0 }}>
+          <ListItem style={{ borderBottomWidth: 3 }}>
             <Body>
               <Form>
                 <Body>
-                  <Label style={{ color: "white" }}>Username</Label>
+                  <Label style={{ color: "black" }}>Username</Label>
                 </Body>
                 <Item
                   rounded
@@ -51,11 +51,11 @@ class Signup extends Component {
                   />
                 </Item>
                 <Body>
-                  <Label style={{ color: "white" }}>Password</Label>
+                  <Label style={{ color: "black" }}>Password</Label>
                 </Body>
                 <Item
                   rounded
-                  style={{ backgroundColor: "white", marginTop: 10 }}
+                  style={{ backgroundColor: "grey", marginTop: 10 }}
                 >
                   <Input
                     autoCorrect={false}
@@ -68,7 +68,11 @@ class Signup extends Component {
             </Body>
           </ListItem>
 
-          <Button full onPress={() => authStore.signup(this.state, navigation)}>
+          <Button
+            full
+            color="#556b2f"
+            onPress={() => authStore.signup(this.state, navigation)}
+          >
             <Text>Registration</Text>
           </Button>
 

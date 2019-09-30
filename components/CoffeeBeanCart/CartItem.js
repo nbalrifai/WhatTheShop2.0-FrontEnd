@@ -11,10 +11,13 @@ const CartItem = ({ item }) => {
       {/* X */}
       {/* X */}
       <Left>
-        <Text style={{ color: "blue", marginLeft: 16 }}> {item.name} </Text>
-        <Text note style={{ marginLeft: 16 }}>
-          {item.origin}
+        <Text style={{ color: "blue", marginLeft: 16 }}>
+          {" "}
+          {item.name + "\n"}
         </Text>
+        {/* <Text note style={{ marginLeft: 16 }}>
+          {item.origin}
+        </Text> */}
       </Left>
       {/* x */}
       <Body>

@@ -1,5 +1,6 @@
 import { decorate, observable } from "mobx";
 import axios from "axios";
+import { instance } from "./authStore";
 
 class CoffeeBeanStore {
   coffeeBean = [];
@@ -8,7 +9,9 @@ class CoffeeBeanStore {
   fetchAllcoffeeBean = async () => {
     // console.log("fetchAllcoffeBean");
     try {
-      let res = await axios.get("http://192.168.8.132:80/api/CoffeeBeanList/");
+      let res = await instance.get(
+        "http://192.168.8.132:80/api/CoffeeBeanList/"
+      );
       let coffeBeansFromAPI = res.data;
       // console.log("store", coffeBeansFromAPI);
 

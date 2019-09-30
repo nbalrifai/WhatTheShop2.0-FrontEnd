@@ -15,9 +15,16 @@ const ProfileStack = createStackNavigator(
     BeanList: CoffeeBeanList
   },
   {
-    initialRouteName: "Login",
+    initialRouteName: "Profile",
     defaultNavigationOptions: {
-      title: "Coffee Bean Land"
+      title: "Profile Page",
+      headerTintColor: "#006400",
+      headerStyle: {
+        backgroundColor: "#cd853f"
+      },
+      headerTitleStyle: {
+        fontWeight: "bold"
+      }
     }
   }
 );

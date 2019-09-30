@@ -2,23 +2,11 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   text: {
-    color: "#cd853f",
-    fontSize: 10,
+    color: "brown",
+    fontSize: 18,
     fontWeight: "bold",
     opacity: 1
   },
-
-  textProfilePage: {
-    color: "brown",
-    fontSize: 19,
-    marginLeft: 16,
-    fontWeight: "bold",
-    fontStyle: "italic",
-
-    justifyContent: "center",
-    alignItems: "center"
-  },
-
   divider: {
     borderBottomColor: "black",
     borderBottomWidth: 1
@@ -57,7 +45,8 @@ const styles = StyleSheet.create({
   },
   background: {
     width: null,
-    flex: 1
+    flex: 1,
+    opacity: 0.5
   }
 });
 export default styles;
